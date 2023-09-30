@@ -1,3 +1,15 @@
+--[[
+  Keybinding philosophy overview:
+  KEEP THOSE DAMN FINGERS IN THE HOMEROW
+  and I mean this in the most strict fucking sense possible
+  EVERY SINGLE CUSTOM KEYBINDING SHOULD BE ON THE HOMEROW
+
+  a, s, d, f, g, h, j, k, l
+
+  intuitively, this is very restricting 
+  BUT ITS FAST!!
+--]]
+
 local M = {}
 
 M.disabled = {
@@ -11,8 +23,8 @@ M.disabled = {
 
 		["h"] = { "" },
 		["j"] = { "" },
-		["k"] = { "" },
-		["l"] = { "" },
+		-- ["k"] = { "" }, replaced with telescope grep
+		-- ["l"] = { "" }, replaced with telescope find
 	},
 }
 
@@ -115,11 +127,12 @@ M.telescope = {
 	plugin = true,
 
 	n = {
-		-- find
-		[","] = { "<cmd> Telescope find_files <CR>", "Find files" },
+		-- [","] = { "<cmd> Telescope find_files <CR>", "Find files" },
+		["l"] = { "<cmd> Telescope find_files <CR>", "Find files" },
+		-- ["<leader>fw"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
+		["k"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
 		--[[
     ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
-    ["<leader>fw"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
     ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
     ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
@@ -128,12 +141,6 @@ M.telescope = {
     -- git
     ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
     ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "Git status" },
-
-    -- pick a hidden term
-    ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "Pick hidden term" },
-
-    -- theme switcher
-    ["<leader>th"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
 
     ["<leader>ma"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
     ]]
@@ -144,7 +151,8 @@ M.oil = {
 	plugin = true,
 
 	n = {
-		["-"] = { "<cmd> Oil <CR>", "Opens Oil" },
+		-- ["-"] = { "<cmd> Oil <CR>", "Opens Oil" },
+		[";"] = { "<cmd> Oil <CR>", "Opens Oil" },
 	},
 }
 
