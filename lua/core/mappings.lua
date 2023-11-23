@@ -1,32 +1,13 @@
---[[
+--[[mappings
   Keybinding philosophy overview:
   KEEP THOSE DAMN FINGERS IN THE HOMEROW
   and I mean this in the most strict fucking sense possible
   EVERY SINGLE CUSTOM KEYBINDING SHOULD BE ON THE HOMEROW
 
   a, s, d, f, g, h, j, k, l
-
-  intuitively, this is very restricting 
-  BUT ITS FAST!!
 --]]
 
 local M = {}
-
-M.disabled = {
-	n = {
-		["<Left>"] = { "" },
-		["<Right>"] = { "" },
-		["<Up>"] = { "" },
-		["<Down>"] = { "" },
-		["<PageUp>"] = { "" },
-		["<PageDown>"] = { "" },
-
-		["h"] = { "" },
-		["j"] = { "" },
-		-- ["k"] = { "" }, replaced with telescope grep
-		-- ["l"] = { "" }, replaced with telescope find
-	},
-}
 
 M.general = {
 	i = {
@@ -34,14 +15,14 @@ M.general = {
 		["<C-b>"] = { "<ESC>^i", "Beginning of line" },
 		["<C-e>"] = { "<End>", "End of line" },
 
-		-- navigate within insert mode
-		["<C-h>"] = { "<Left>", "Move left" },
-		["<C-l>"] = { "<Right>", "Move right" },
-		["<C-j>"] = { "<Down>", "Move down" },
-		["<C-k>"] = { "<Up>", "Move up" },
+		-- other shit
+		["<C-s>"] = { ":w <CR>", "Save file" },
+		["jk"] = { "<ESC>", "Normal mode" },
 	},
 
 	n = {
+		["j"] = { "<C-d>" },
+		["k"] = { "<C-u>" },
 		["<Esc>"] = { ":noh <CR>", "Clear highlights" },
 		["<C-h>"] = { "<C-w>h", "Window left" },
 		["<C-l>"] = { "<C-w>l", "Window right" },
@@ -57,72 +38,6 @@ M.general = {
 	},
 }
 
-local terminal = require("modules.terminal")
-M.terminal = {
-	t = {
-		-- toggle in terminal mode
-		["<A-i>"] = {
-			function()
-				terminal.toggle("float")
-			end,
-			"Toggle floating term",
-		},
-
-		["<A-h>"] = {
-			function()
-				terminal.toggle("horizontal")
-			end,
-			"Toggle horizontal term",
-		},
-
-		["<A-v>"] = {
-			function()
-				terminal.toggle("vertical")
-			end,
-			"Toggle vertical term",
-		},
-	},
-
-	n = {
-		-- toggle in normal mode
-		["<A-i>"] = {
-			function()
-				terminal.toggle("float")
-			end,
-			"Toggle floating term",
-		},
-
-		["<A-h>"] = {
-			function()
-				terminal.toggle("horizontal")
-			end,
-			"Toggle horizontal term",
-		},
-
-		["<A-v>"] = {
-			function()
-				terminal.toggle("vertical")
-			end,
-			"Toggle vertical term",
-		},
-
-		-- new
-		["<leader>h"] = {
-			function()
-				terminal.new("horizontal")
-			end,
-			"New horizontal term",
-		},
-
-		["<leader>v"] = {
-			function()
-				terminal.new("vertical")
-			end,
-			"New vertical term",
-		},
-	},
-}
-
 M.telescope = {
 	plugin = true,
 
@@ -130,7 +45,7 @@ M.telescope = {
 		-- [","] = { "<cmd> Telescope find_files <CR>", "Find files" },
 		["l"] = { "<cmd> Telescope find_files <CR>", "Find files" },
 		-- ["<leader>fw"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
-		["k"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
+		["h"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
 		--[[
     ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
     ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
@@ -173,36 +88,5 @@ M.leap = {
 		},
 	},
 }
-
---[[
--- dont need this now but in case you find a use case for it you can activate
-M.neomarks = {
-	plugin = true,
-
-	n = {
-		["<C-a>"] = {
-			function()
-				require("neomarks").mark_file()
-			end,
-			"Neomarks mark file",
-		},
-		["<C-m>"] = {
-			function()
-				require("neomarks").ui_toggle()
-			end,
-			"Neomarks toggle ui",
-		},
-	},
-}
-
-for i = 1, 9 do
-	M.neomarks["<C-" .. i] = {
-		function()
-			require("neomarks").jump_to(i)
-		end,
-		"Neomarks jump to " .. i,
-	}
-end
-]]
 
 return M

@@ -17,7 +17,7 @@ local plugins = {
 
 	{
 		"nvim-tree/nvim-web-devicons",
-		config = function(_, opts)
+		config = function(_, _opts)
 			require("nvim-web-devicons").setup()
 		end,
 	},
@@ -42,19 +42,32 @@ local plugins = {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"luau-lsp.nvim",
-			{
-				"nvimdev/guard.nvim",
-				dependencies = {
-					"nvimdev/guard-collection",
-				},
-			},
 		},
 		init = function()
 			require("core.utils").lazy_load("nvim-lspconfig")
 		end,
 		config = function()
 			require("plugins.configs.lspconfig")
-			require("plugins.configs.guard")
+		end,
+	},
+
+	{
+		"mfussenegger/nvim-lint",
+		init = function()
+			require("core.utils").lazy_load("nvim-lint")
+		end,
+		config = function()
+			require("plugins.configs.nvim-lint")
+		end,
+	},
+
+	{
+		"stevearc/conform.nvim",
+		init = function()
+			require("core.utils").lazy_load("conform.nvim")
+		end,
+		config = function()
+			require("plugins.configs.conform")
 		end,
 	},
 
@@ -62,29 +75,10 @@ local plugins = {
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		dependencies = {
-			-- autopairing of (){}[] etc
-			{
-				"windwp/nvim-autopairs",
-				opts = {
-					fast_wrap = {},
-					disable_filetype = { "TelescopePrompt", "vim" },
-				},
-				config = function(_, opts)
-					require("nvim-autopairs").setup(opts)
-
-					-- setup cmp for autopairs
-					local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-					require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-				end,
-			},
-
-			-- cmp sources plugins
-			{
-				"hrsh7th/cmp-nvim-lua",
-				"hrsh7th/cmp-nvim-lsp",
-				"hrsh7th/cmp-buffer",
-				"hrsh7th/cmp-path",
-			},
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
 		},
 		opts = function()
 			return require("plugins.configs.cmp")
@@ -160,21 +154,16 @@ local plugins = {
 
 	{
 		"ggandor/leap.nvim",
+		dependencies = { "ggandor/flit.nvim" },
 		init = function()
 			require("core.utils").load_mappings("leap")
+			require("flit").setup({
+				keys = { f = "f", F = "F", t = "t", T = "T" },
+				labeled_modes = "v",
+				multiline = true,
+			})
 		end,
 	},
-
-	--[[
-  -- dont need this now but in case you find a use case for it you can activate
-	{
-		"saccarosium/neomarks",
-		opts = {},
-		init = function()
-			require("core.utils").load_mappings("neomarks")
-		end,
-	},
-  ]]
 }
 
 require("lazy").setup(plugins, require("plugins.configs.lazy"))

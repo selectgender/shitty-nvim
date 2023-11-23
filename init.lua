@@ -1,14 +1,17 @@
-require "core"
+require("core")
 
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
-  require("core.bootstrap").lazy(lazypath)
+	require("core.bootstrap").lazy(lazypath)
 end
 
 vim.opt.rtp:prepend(lazypath)
-require "plugins"
+require("plugins")
 
 require("core.utils").load_mappings()
-require("modules.base16").load_all_highlights()
 require("modules.modeline")
+
+-- you can comment the compile if you really care that much but it really doesnt affect startup
+require("modules.base16").compile()
+require("modules.base16").load_all_highlights()
