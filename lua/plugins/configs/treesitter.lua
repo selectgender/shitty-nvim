@@ -4,6 +4,7 @@ local options = {
 		"luau",
 		"typescript",
 		"tsx",
+		"latex",
 	},
 
 	highlight = {

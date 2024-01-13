@@ -153,15 +153,10 @@ local plugins = {
 	},
 
 	{
-		"ggandor/leap.nvim",
-		dependencies = { "ggandor/flit.nvim" },
+		"rlane/pounce.nvim",
+		cmd = "Pounce",
 		init = function()
-			require("core.utils").load_mappings("leap")
-			require("flit").setup({
-				keys = { f = "f", F = "F", t = "t", T = "T" },
-				labeled_modes = "v",
-				multiline = true,
-			})
+			require("core.utils").load_mappings("pounce")
 		end,
 	},
 }

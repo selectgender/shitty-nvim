@@ -1,20 +1,34 @@
-snippet c
-	const 
-snippet v
-	var 
-snippet a
-	async  
-snippet e
-	export 
 snippet r
 	return 
-snippet pr
-	private 
-snippet pu
-	public  
 snippet =
-	${1:thing} = ${0:value}
+	(${1:params}) => {$0}
+snippet c
+	const 
+snippet c=
+	const ${1:name} = ${0:value};
+snippet cd "const destructured"
+	const [${1:name}] = ${0:value}
+snippet pr 
+	private 
+snippet pr=
+	private ${1:name} = ${0:value}
+snippet pu
+	public 
+snippet pu=
+	public ${1:name} = ${0:value}
+snippet l
+	let 
+snippet l=
+	let ${1:name} = ${0:value};
+snippet e
+	export 
+snippet e=
+	export = ${0:value}
 snippet f
-	function ${1:name}(${2:param}) {
-		${0}
+	function ${1:name}(${2:params}) {
+		$0
+	}
+snippet fi
+	for (let ${1:i} = ${2:0}; $1 < ${3:10}; ${4:$1++}) {
+		$0
 	}

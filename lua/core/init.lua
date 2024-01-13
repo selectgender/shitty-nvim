@@ -26,6 +26,7 @@ opt.wrap = false
 
 -- Numbers
 opt.number = true
+opt.relativenumber = true
 opt.numberwidth = 2
 opt.ruler = false
 opt.colorcolumn = "80"

@@ -1,5 +1,7 @@
 local no_config = {
 	"tsserver",
+	"rust_analyzer",
+	"clangd",
 }
 
 for _, name in ipairs(no_config) do

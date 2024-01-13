@@ -1,47 +1,44 @@
 extends javascript
 
-snippet t
-	type 
 snippet i
-	interface 
-snippet FS "flamework service"
-	import { Service, OnInit, OnStart } from "@flamework/core";
-
-	@Service()
-	export class ${1:MyService} implements OnInit, OnStart {
-		onInit() {
-			${0}
-		}
-
-		onStart() {
-
-		}
+	interface ${1:name} {
+		${0: option}
 	}
 snippet FC "flamework controller"
-	import { Controller, OnInit, OnStart } from "@flamework/core";
+	import { Controller, OnStart, OnInit } from "@flamework/core";
 
-	@Controller()
-	export class ${1:MyController} implements OnInit, OnStart {
+	@Controller({})
+	export class ${1:Controller} implements OnStart, OnInit {
 		onInit() {
-			${0}
+			$2
 		}
-
+		
 		onStart() {
-
+			$0
 		}
 	}
-snippet FM "flamework component"
-	import { OnInit, OnStart } from "@flamework/core";
+snippet FS "flamework service"
+	import { Service, OnStart, OnInit } from "@flamework/core";
+
+	@Service({})
+	export class ${1:Service} implements OnStart, OnInit {
+		onInit() {
+			$2
+		}
+		
+		onStart() {
+			$0
+		}
+	}
+snippet FCM "flamework component"
+	import { OnStart } from  "@flamework/core";
 	import { Component, BaseComponent } from "@flamework/components";
-
-	@Component()
-	export class ${1:MyComponent} extends BaseComponent implements OnInit, OnStart {
-		onInit() {
-			${0}
-		}
-
+	
+	interface Attributes {}
+	
+	@Component({})
+	export class ${1:Component} extends BaseComponent<Attributes> implements OnStart {
 		onStart() {
-
+			$0
 		}
 	}
-

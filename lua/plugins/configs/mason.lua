@@ -4,6 +4,7 @@ local options = {
 		"lua-language-server",
 		"luau-lsp",
 		"typescript-language-server",
+		"clangd",
 
 		-- formatters
 		"stylua",

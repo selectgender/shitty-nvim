@@ -1,1 +1,14 @@
 extends typescript
+
+snippet C "component"
+	interface ${1:Component}Props {
+		${2:option}
+	}
+
+	export function $1({
+		$2
+	}: $1Props) {
+		return (
+			$0
+		)
+	}
