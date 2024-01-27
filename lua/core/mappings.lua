@@ -46,6 +46,8 @@ M.general = {
 		["L"] = { "l", "Right" },
 		["J"] = { "j", "Down" },
 		["K"] = { "k", "Up" },
+
+		["<leader>r"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
 	},
 
 	v = {

@@ -159,6 +159,47 @@ local plugins = {
 			require("core.utils").load_mappings("pounce")
 		end,
 	},
+
+	{
+		"nvim-neorg/neorg",
+		build = ":Neorg sync-parsers",
+		dependencies = { "nvim-lua/plenary.nvim", "nvim-neorg/neorg-telescope" },
+		cmd = "Neorg",
+		ft = "norg",
+		config = function()
+			require("neorg").setup({
+				load = {
+					["core.defaults"] = {},
+					["core.concealer"] = {},
+					["core.dirman"] = {
+						config = {
+							workspaces = {
+								school = "~/dox/norg-school",
+								personal = "~/dox/norg-personal",
+							},
+						},
+					},
+					["core.integrations.telescope"] = {},
+					["core.esupports.hop"] = {},
+				},
+			})
+
+			local neorg_callbacks = require("neorg.core.callbacks")
+
+			neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, keybinds)
+				-- Map all the below keybinds only when the "norg" mode is active
+				keybinds.map_event_to_mode("norg", {
+					n = { -- Bind keys in normal mode
+						{ "<leader>nf", "core.integrations.telescope.find_linkable" },
+						{ "<leader>ni", "core.integrations.telescope.insert_file_link" },
+					},
+				}, {
+					silent = true,
+					noremap = true,
+				})
+			end)
+		end,
+	},
 }
 
 require("lazy").setup(plugins, require("plugins.configs.lazy"))

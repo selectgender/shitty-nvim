@@ -69,8 +69,6 @@ M.compile = function()
 end
 
 M.load_all_highlights = function()
-	-- M.compile()
-
 	for _, file in ipairs(vim.fn.readdir(base16_cache)) do
 		dofile(base16_cache .. file)
 	end

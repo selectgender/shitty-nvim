@@ -5,7 +5,7 @@
 local opt = vim.opt
 local g = vim.g
 
-opt.laststatus = 3 -- global statusline
+opt.laststatus = 0 -- hide statusline
 opt.showmode = false
 
 opt.clipboard = "unnamedplus"
@@ -25,8 +25,8 @@ opt.mouse = "a"
 opt.wrap = false
 
 -- Numbers
-opt.number = true
-opt.relativenumber = true
+opt.number = false
+opt.relativenumber = false
 opt.numberwidth = 2
 opt.ruler = false
 opt.colorcolumn = "80"

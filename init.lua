@@ -10,8 +10,6 @@ vim.opt.rtp:prepend(lazypath)
 require("plugins")
 
 require("core.utils").load_mappings()
-require("modules.modeline")
 
--- you can comment the compile if you really care that much but it really doesnt affect startup
 require("modules.base16").compile()
 require("modules.base16").load_all_highlights()
